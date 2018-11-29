@@ -1,5 +1,6 @@
 package com.para.pontointeligente.api.model;
 
+
 import javax.persistence.*;
 
 import com.para.pontointeligente.api.enums.TipoEnum;
@@ -20,11 +21,14 @@ public class Lancamento implements Serializable {
     private Date dataCriacao;
     private Date dataAtualizacao;
     private TipoEnum tipo;
-    private Funcionario fucionario;
+    private Funcionario funcionario;
 
+    public Lancamento() {
+	
+    }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -33,7 +37,8 @@ public class Lancamento implements Serializable {
         this.id = id;
     }
 
-    @Temporal(TemporalType.TIMESTAMP) // esta marcação diz que e para gravar a data e hora atual
+ // esta marcação diz que e para gravar a data e hora atual
+    @Temporal(TemporalType.TIMESTAMP) 
     @Column(name = "data", nullable = false)
     public Date getData() {
         return data;
@@ -43,7 +48,7 @@ public class Lancamento implements Serializable {
         this.data = data;
     }
 
-    @Column(name = "descricao", nullable = false)
+    @Column(name = "descricao", nullable = true)
     public String getDescricao() {
         return descricao;
     }
@@ -52,7 +57,7 @@ public class Lancamento implements Serializable {
         this.descricao = descricao;
     }
 
-    @Column(name = "localizacao", nullable = false)
+    @Column(name = "localizacao", nullable = true)
     public String getLocalizacao() {
         return localizacao;
     }
@@ -92,12 +97,12 @@ public class Lancamento implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    public Funcionario getFucionario() {
-        return fucionario;
+    public Funcionario getFuncionario() {
+        return funcionario;
     }
 
-    public void setFucionario(Funcionario fucionario) {
-        this.fucionario = fucionario;
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 
     @PreUpdate
@@ -116,7 +121,7 @@ public class Lancamento implements Serializable {
     public String toString() {
         return "Lancamento [id=" + id + ", data=" + data + ", descricao=" + descricao + ", localizacao=" + localizacao
                 + ", dataCriacao=" + dataCriacao + ", dataAtualizacao=" + dataAtualizacao + ", tipo=" + tipo
-                + ", fucionario=" + fucionario + "]";
+                + ", fucionario=" + funcionario + "]";
     }
 
 

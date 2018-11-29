@@ -7,10 +7,12 @@ import com.para.pontointeligente.api.utils.PasswordUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.gen5.api.DisplayName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.security.NoSuchAlgorithmException;
@@ -18,9 +20,8 @@ import java.security.NoSuchAlgorithmException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-@ActiveProfiles("test")
 public class FuncionarioRepositoryTest {
 
     private static final String EMAIL = "email@email.com";
@@ -40,9 +41,14 @@ public class FuncionarioRepositoryTest {
     public final void tearDown() {
         this.empresaRepository.deleteAll();
     }
+    
+    @Test
+    public void testBucarFucnionario() {
+    	assertEquals(true, true);
+    }
 
     @Test
-    //@DisplayName //Junit 5
+    @DisplayName("Tem que buscar o funcionario por email")
     public void testBuscarFuncionarioPorEmail() {
         Funcionario funcionario = this.funcionarioRepository.findByEmail(EMAIL);
 

@@ -6,9 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
 
+	//por se tratar de um método só de consulta ele faz um select no banco
+    //ele nao precisa fazer trasanção e nem bloquear o banco de dados
     @Transactional(readOnly = true)
-        //por se tratar de um método só de consulta ele faz um select no banco
-        //ele nao precisa fazer trasanção e nem bloquear o banco de dados
     Empresa findByCnpj(String cnpj);
 
 }

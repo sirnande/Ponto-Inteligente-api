@@ -1,5 +1,5 @@
 CREATE TABLE empresa(
-  id BIGINT(20) NOT NULL,
+id BIGINT(20) NOT NULL,
 cnpj VARCHAR(255)NOT NULL,
 data_atualizacao DATETIME NOT NULL,
 data_criacao DATETIME NOT NULL,
@@ -8,7 +8,7 @@ razao_social VARCHAR(255)NOT NULL
 
 
 CREATE TABLE funcionario (
-  id BIGINT(20) NOT NULL,
+id BIGINT(20) NOT NULL,
 cpf VARCHAR(255)NOT NULL,
 data_atualizacao DATETIME NOT NULL,
 data_criacao DATETIME NOT NULL,
@@ -18,12 +18,12 @@ perfil VARCHAR(255)NOT NULL,
 qtd_horas_almoco FLOAT DEFAULT NULL,
 qtd_horas_trabalho_dia FLOAT DEFAULT NULL,
 senha VARCHAR(255)NOT NULL,
-valor_hora DECIMAL(19, 2)DEFAULT NULL,
+valor_hora DECIMAL(19,2)DEFAULT NULL,
 empresa_id BIGINT(20)DEFAULT NULL
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 CREATE TABLE lancamento (
-  id BIGINT(20) NOT NULL,
+id BIGINT(20) NOT NULL,
 DATA DATETIME NOT NULL,
 data_atualizacao DATETIME NOT NULL,
 data_criacao DATETIME NOT NULL,

@@ -1,5 +1,6 @@
 package com.para.pontointeligente.api.model;
 
+
 import javax.persistence.*;
 
 import com.para.pontointeligente.api.enums.PerfilEnum;
@@ -14,6 +15,7 @@ import java.util.Optional;
 @Table(name = "funcionario")
 public class Funcionario implements Serializable {
 
+	private static final long serialVersionUID = 1906066062052020595L;
 
     private Long id;
     private String nome;
@@ -29,9 +31,13 @@ public class Funcionario implements Serializable {
     private Empresa empresa;
     private List<Lancamento> lancamento;
 
+    
+    public Funcionario() {
+	
+    }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -77,26 +83,27 @@ public class Funcionario implements Serializable {
         this.cpf = cpf;
     }
 
-    @Column(name = "valor_hora", nullable = false)
+    @Column(name = "valor_hora", nullable = true)
     public BigDecimal getValorHora() {
         return valorHora;
-    }
-
-    public void setValorHora(BigDecimal valorHora) {
-        this.valorHora = valorHora;
-    }
-
-
-    @Transient
+    }   
     // Significa que o JPA deve ignorar este método, pois ele não estar relacionado com implementação o mapeamento com o banco de dado
     //pois ele deve estar aqui por algum motivo
+
+    @Transient
     public Optional<BigDecimal> getValorHoraOpt() {
         return Optional.ofNullable(valorHora);
     }
+    
+    public void setValorHora(BigDecimal valorHora) {
+        this.valorHora = valorHora;
+    }
+    
+    
 
 
-    @Column(name = "qtd-horas_trabalho_dia", nullable = false)
-    public float getQtdHorasTrabalhadoDia() {
+    @Column(name = "qtd_horas_trabalho_dia", nullable = true)
+    public Float getQtdHorasTrabalhadoDia() {
         return qtdHorasTrabalhadoDia;
     }
 
@@ -155,8 +162,10 @@ public class Funcionario implements Serializable {
         this.dataAtualizacao = dataAtualizacao;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+
     //Mapeamneto de muito fuincionario para uma empresa do tipo EAGER pois apos carregar o funcionário eu ccarrego junto os dados da emrpesa
+   
+    @ManyToOne(fetch = FetchType.EAGER)
     public Empresa getEmpresa() {
         return empresa;
     }
@@ -187,11 +196,11 @@ public class Funcionario implements Serializable {
         dataAtualizacao = atual;
     }
 
-    @Override
-    public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
-    }
-
-
+	@Override
+	public String toString() {
+		return "Funcionario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", cpf=" + cpf
+				+ ", valorHora=" + valorHora + ", qtdHorasTrabalhadoDia=" + qtdHorasTrabalhadoDia + ", qtdHorasAlmoco="
+				+ qtdHorasAlmoco + ", perfil=" + perfil + ", dataCriacao=" + dataCriacao + ", dataAtualizacao="
+				+ dataAtualizacao + ", empresa=" + empresa + ", lancamentos=" + lancamento + "]";
+	}
 }
