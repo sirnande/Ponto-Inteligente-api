@@ -14,7 +14,7 @@ public interface EmpresaService {
 	 * @return Optional<Empresa>
 	 */
 	
-	Empresa buscarPorCnpj(String cnpj);
+	Optional<Empresa> buscarPorCnpj(String cnpj);
 
 	
 	/**

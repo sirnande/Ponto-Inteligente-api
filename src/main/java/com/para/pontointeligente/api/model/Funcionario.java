@@ -118,7 +118,7 @@ public class Funcionario implements Serializable {
     }
 
 
-    @Column(name = "qtd_hora_almoco", nullable = false)
+    @Column(name = "qtd_horas_almoco", nullable = true)
     public float getQtdHorasAlmoco() {
         return qtdHorasAlmoco;
     }

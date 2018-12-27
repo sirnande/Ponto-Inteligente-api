@@ -24,13 +24,11 @@ public class EmpresaServiceImplementation implements EmpresaService{
 	private EmpresaRepository empresaRepository;
 	
 	@Override
-	public Empresa buscarPorCnpj(String cnpj) {
+	public Optional<Empresa> buscarPorCnpj(String cnpj) {
 	
 		log.info("Bunscando uma empresa pela o CNPJ {}",cnpj);
 		
-		Optional<Empresa> maybeEmpresa = Optional.ofNullable(empresaRepository.findByCnpj(cnpj));
-		
-		return maybeEmpresa.orElseThrow(() -> new RuntimeException("Empresa não encontrada"));
+		return Optional.ofNullable(this.empresaRepository.findByCnpj(cnpj));
 	}
 	
 	
