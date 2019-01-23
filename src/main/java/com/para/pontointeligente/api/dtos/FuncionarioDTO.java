@@ -5,23 +5,20 @@ import java.util.Optional;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.constraints.br.CNPJ;
-import org.hibernate.validator.constraints.br.CPF;
 
-public class CadastroPFDTO {
-
+public class FuncionarioDTO {
+	
 	private Long id;
 	private String nome;
 	private String email;
-	private String senha;
-	private String cpf;
+	private Optional<String> senha = Optional.empty();
 	private Optional<String> valorHora = Optional.empty();
 	private Optional<String> qtdHorasTrabalhoDia = Optional.empty();
 	private Optional<String> qtdHorasAlmoco = Optional.empty();
-	private String cnpj;
 
-	
-	
+	public FuncionarioDTO() {
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -51,23 +48,12 @@ public class CadastroPFDTO {
 		this.email = email;
 	}
 
-	@NotEmpty(message = "Senha não pode ser vazia.")
-	public String getSenha() {
+	public Optional<String> getSenha() {
 		return senha;
 	}
 
-	public void setSenha(String senha) {
+	public void setSenha(Optional<String> senha) {
 		this.senha = senha;
-	}
-
-	@NotEmpty(message = "CPF não pode ser vazio.")
-	@CPF(message="CPF inválido")
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
 	}
 
 	public Optional<String> getValorHora() {
@@ -94,22 +80,11 @@ public class CadastroPFDTO {
 		this.qtdHorasAlmoco = qtdHorasAlmoco;
 	}
 
-	@NotEmpty(message = "CNPJ não pode ser vazio.")
-	@CNPJ(message="CNPJ inválido.")
-	public String getCnpj() {
-		return cnpj;
-	}
-
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
-
 	@Override
 	public String toString() {
-		return "FuncionarioDTO [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", cpf=" + cpf
-				+ ", valorHora=" + valorHora + ", qtdHorasTrabalhoDia=" + qtdHorasTrabalhoDia + ", qtdHorasAlmoco="
-				+ qtdHorasAlmoco + ", cnpj=" + cnpj + "]";
+		return "FuncionarioDTO [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", valorHora="
+				+ valorHora + ", qtdHorasTrabalhoDia=" + qtdHorasTrabalhoDia + ", qtdHorasAlmoco=" + qtdHorasAlmoco
+				+ "]";
 	}
-	
-	
+
 }
