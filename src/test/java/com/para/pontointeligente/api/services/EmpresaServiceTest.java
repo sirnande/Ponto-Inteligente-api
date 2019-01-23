@@ -40,20 +40,18 @@ public class EmpresaServiceTest {
 	
 	@Before
 	public void setup() throws Exception{
-//		BDDMockito.given(this.empresaRepository.findByCnpj(Mockito.anyString())).willReturn(new Empresa());
+		BDDMockito.given(this.empresaRepository.findByCnpj(Mockito.anyString())).willReturn(new Empresa());
 		BDDMockito.given(this.empresaRepository.save(Mockito.any(Empresa.class))).willReturn(new Empresa());
 	}
 	
 	
 	@Test
 	public void testExcecao() {
-//		Optional<Empresa> empresa = this.empresaService.buscarPorCnpj(CNPJ);
-		expected.expect(RuntimeException.class);
-		expected.expectMessage("Empresa não encontrada");
+		Optional<Empresa> empresa = this.empresaService.buscarPorCnpj(CNPJ);
 		this.empresaService.buscarPorCnpj(CNPJ);
 		
 		
-//		assertTrue(empresa.isPresent());
+		assertTrue(empresa.isPresent());
 	}
 	
 	@Test
